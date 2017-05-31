@@ -10,7 +10,7 @@ const cors = require('cors')
 
 const index = require('./routes/index');
 const auth = require('./routes/api/v1/auth');
-const users = require('./routes/users');
+const user = require('./routes/api/v1/user');
 
 const app = express();
 
@@ -40,13 +40,14 @@ const localLoginStrategy = require('./passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
-app.use('/', index);
-app.use('/api/v1/auth', auth);
-app.use('/users', users);
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = require('./middleware/auth-check');
-app.use('/api/v1/', authCheckMiddleware);
+app.use('/api/v1/user', authCheckMiddleware);
+
+app.use('/', index);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
