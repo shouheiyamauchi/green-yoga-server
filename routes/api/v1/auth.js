@@ -135,7 +135,7 @@ router.post('/login', (req, res, next) => {
         success: false,
         message: 'Could not process the form.'
       });
-    }
+    };
     return res.json({
       success: true,
       message: 'You have successfully logged in!',

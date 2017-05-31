@@ -45,7 +45,7 @@ module.exports = new PassportLocalStrategy({
       // create a token string
       const token = jwt.sign(payload, process.env.GREEN_YOGA_JWT);
       const data = {
-        name: user.name
+        user: user
       };
 
       return done(null, token, data);
