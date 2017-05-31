@@ -14,13 +14,7 @@ const users = require('./routes/users');
 const app = express();
 
 // connect to database
-mongoose.connect(process.env.GREEN_YOGA_DB);
-const { connection: db } = mongoose;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('connected to database');
-});
+require('./models').connect(process.env.GREEN_YOGA_DB);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
