@@ -36,7 +36,7 @@ function validateSignupForm(payload) {
     errors.lastName = 'Please provide your last name.';
   }
 
-  if (!payload || payload.dob.trim().length === 0) {
+  if (!payload || typeof payload.dob !== 'date' || payload.dob.trim().length === 0) {
     isFormValid = false;
     errors.dob = 'Please provide your date of birth.';
   }
