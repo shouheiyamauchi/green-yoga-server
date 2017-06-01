@@ -8,8 +8,23 @@ const UserSchema = new mongoose.Schema({
     index: { unique: true }
   },
   password: String,
-  name: String,
-  role: String
+  role: String,
+  name: {
+    first: String,
+    last: String
+  },
+  dob: Date,
+  address: {
+    line1: String,
+    line2: String,
+    suburb: String,
+    state: String,
+    pcode: String
+  },
+  description: String,
+  purchases: [],
+  avatar: String,
+  active: Boolean
 });
 
 /**
