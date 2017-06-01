@@ -31,6 +31,36 @@ function validateSignupForm(payload) {
     errors.firstName = 'Please provide your first name.';
   }
 
+  if (!payload || typeof payload.lastName !== 'string' || payload.lastName.trim().length === 0) {
+    isFormValid = false;
+    errors.lastName = 'Please provide your last name.';
+  }
+
+  if (!payload || typeof payload.dob !== 'date' || payload.dob.trim().length === 0) {
+    isFormValid = false;
+    errors.dob = 'Please provide your date of birth.';
+  }
+
+  if (!payload || typeof payload.line1 !== 'string' || payload.line1.trim().length === 0) {
+    isFormValid = false;
+    errors.line1 = 'Please provide your address.';
+  }
+
+  if (!payload || typeof payload.suburb !== 'string' || payload.suburb.trim().length === 0) {
+    isFormValid = false;
+    errors.suburb = 'Please provide your suburb.';
+  }
+
+  if (!payload || typeof payload.state !== 'string' || payload.state.trim().length === 0) {
+    isFormValid = false;
+    errors.state = 'Please provide your state.';
+  }
+
+  if (!payload || typeof payload.pcode !== 'string' || payload.pcode.trim().length === 0) {
+    isFormValid = false;
+    errors.pcode = 'Please provide your post code.';
+  }
+
   if (!isFormValid) {
     message = 'Check the form for errors.';
   }
