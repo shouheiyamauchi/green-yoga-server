@@ -7,8 +7,8 @@ const ClassSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  user_id: Schema.Types.ObjectId,
-  type_id: Schema.Types.ObjectId
+  user_id: mongoose.Schema.Types.ObjectId,
+  type_id: mongoose.Schema.Types.ObjectId
 });
 
 module.exports = mongoose.model('Class', ClassSchema);
