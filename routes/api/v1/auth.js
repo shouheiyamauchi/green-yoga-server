@@ -26,7 +26,7 @@ function validateSignupForm(payload) {
     errors.password = 'Password must have at least 8 characters.';
   }
 
-  if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length === 0) {
+  if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length < 0) {
     isFormValid = false;
     errors.firstName = 'Please provide your first name.';
   }
