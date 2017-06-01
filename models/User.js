@@ -9,18 +9,14 @@ const UserSchema = new mongoose.Schema({
   },
   password: String,
   role: String,
-  name: {
-    first: String,
-    last: String
-  },
+  firstName: String,
+  lastName: String,
   dob: Date,
-  address: {
-    line1: String,
-    line2: String,
-    suburb: String,
-    state: String,
-    pcode: String
-  },
+  line1: String,
+  line2: String,
+  suburb: String,
+  state: String,
+  pcode: String,
   description: String,
   purchases: [],
   avatar: String,
