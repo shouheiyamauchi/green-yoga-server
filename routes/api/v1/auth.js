@@ -26,9 +26,9 @@ function validateSignupForm(payload) {
     errors.password = 'Password must have at least 8 characters.';
   }
 
-  if (!payload || typeof payload.firstname !== 'string' || payload.firstname.trim().length === 0) {
+  if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length === 0) {
       isFormValid = false;
-      errors.firstname = 'Please provide your name.';
+      errors.firstName = 'Please provide your name.';
     }
 
   if (!payload || typeof payload.lastName !== 'string' || payload.lastName.trim().length === 0) {
@@ -36,7 +36,7 @@ function validateSignupForm(payload) {
     errors.lastName = 'Please provide your last name.';
   }
 
-  if (!payload || typeof payload.dob !== 'date' || payload.dob.trim().length === 0) {
+  if (!payload || payload.dob.trim().length === 0) {
     isFormValid = false;
     errors.dob = 'Please provide your date of birth.';
   }
