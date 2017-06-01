@@ -11,6 +11,7 @@ const cors = require('cors')
 const index = require('./routes/index');
 const auth = require('./routes/api/v1/auth');
 const user = require('./routes/api/v1/user');
+const admin = require('./routes/api/v1/admin');
 
 const app = express();
 
@@ -41,13 +42,21 @@ passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
 
-// pass the authenticaion checker middleware
-const authCheckMiddleware = require('./middleware/auth-check');
-app.use('/api/v1/user', authCheckMiddleware);
+
 
 app.use('/', index);
 app.use('/api/v1/auth', auth);
+
+// ensure user is authenticated
+const authCheck = require('./middleware/auth-check');
+app.use('/api/v1/', authCheck);
+// middleware to prevent access to admin area
+const adminCheck = require('./middleware/admin-check');
+app.use('/api/v1/admin', adminCheck);
+
+// routes which require passing through middleware
 app.use('/api/v1/user', user);
+app.use('/api/v1/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
