@@ -12,4 +12,8 @@ module.exports.connect = (uri) => {
 
   // load models
   require('./User');
+  require('./Attendance');
+  require('./Class');
+  require('./Pass');
+  require('./Type');
 };
