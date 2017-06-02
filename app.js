@@ -52,7 +52,7 @@ const authCheck = require('./middleware/auth-check');
 app.use('/api/v1/', authCheck);
 // middleware to prevent access to administrator area
 const administratorCheck = require('./middleware/administrator-check');
-app.use('/api/v1/admin', adminCheck);
+app.use('/api/v1/administrator', administratorCheck);
 // middleware to prevent access to teacher area
 const teacherCheck = require('./middleware/teacher-check');
 app.use('/api/v1/teacher', teacherCheck);
