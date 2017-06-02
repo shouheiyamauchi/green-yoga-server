@@ -11,7 +11,7 @@ const cors = require('cors')
 const index = require('./routes/index');
 const auth = require('./routes/api/v1/auth');
 const user = require('./routes/api/v1/user');
-const admin = require('./routes/api/v1/admin');
+const administrator = require('./routes/api/v1/administrator');
 
 const app = express();
 
@@ -50,13 +50,19 @@ app.use('/api/v1/auth', auth);
 // ensure user is authenticated
 const authCheck = require('./middleware/auth-check');
 app.use('/api/v1/', authCheck);
-// middleware to prevent access to admin area
-const adminCheck = require('./middleware/admin-check');
+// middleware to prevent access to administrator area
+const administratorCheck = require('./middleware/administrator-check');
 app.use('/api/v1/admin', adminCheck);
+// middleware to prevent access to teacher area
+const teacherCheck = require('./middleware/teacher-check');
+app.use('/api/v1/teacher', teacherCheck);
+// middleware to prevent access to receptionist area
+const receptionistCheck = require('./middleware/receptionist-check');
+app.use('/api/v1/receptionist', receptionistCheck);
 
 // routes which require passing through middleware
 app.use('/api/v1/user', user);
-app.use('/api/v1/admin', admin);
+app.use('/api/v1/administrator', administrator);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
