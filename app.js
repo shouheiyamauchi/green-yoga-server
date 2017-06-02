@@ -12,6 +12,7 @@ const index = require('./routes/index');
 const auth = require('./routes/api/v1/auth');
 const user = require('./routes/api/v1/user');
 const administrator = require('./routes/api/v1/administrator');
+const teacher = require('./routes/api/v1/teacher');
 
 const app = express();
 
@@ -63,6 +64,7 @@ app.use('/api/v1/receptionist', receptionistCheck);
 // routes which require passing through middleware
 app.use('/api/v1/user', user);
 app.use('/api/v1/administrator', administrator);
+app.use('/api/v1/teacher', teacher);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
