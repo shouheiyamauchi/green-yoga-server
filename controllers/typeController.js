@@ -72,3 +72,10 @@ exports.postTypes = (req, res) => {
     });
   });
 };
+
+exports.getTypes = (req,res) => {
+  Type.find()
+    .then(types => {
+      res.json(types)
+    })
+};

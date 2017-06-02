@@ -10,6 +10,8 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
+router.get('/types', typeController.getTypes);
+
 router.post('/types', typeController.postTypes);
 
 module.exports = router;
