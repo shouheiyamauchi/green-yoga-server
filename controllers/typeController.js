@@ -32,9 +32,9 @@ function validateTypesForm(payload) {
 }
 
 exports.getTypes = (req,res) => {
-  console.log("Searching types")
   Type.find()
     .then(types => {
+      console.log(types)
       res.json(types)
     })
 };
