@@ -31,6 +31,14 @@ function validateTypesForm(payload) {
   };
 }
 
+exports.getTypes = (req,res) => {
+  console.log("Searching types")
+  Type.find()
+    .then(types => {
+      res.json(types)
+    })
+};
+
 exports.postTypes = (req, res) => {
   const validationResult = validateTypesForm(req.body);
   if (!validationResult.success) {
@@ -71,11 +79,4 @@ exports.postTypes = (req, res) => {
       message: 'You have successfully signed up! Now you should be able to log in.'
     });
   });
-};
-
-exports.getTypes = (req,res) => {
-  Type.find()
-    .then(types => {
-      res.json(types)
-    })
 };
