@@ -11,9 +11,10 @@ module.exports.connect = (uri) => {
   });
 
   // load models
+  require('./Type');
   require('./User');
   require('./Attendance');
   require('./Class');
   require('./Pass');
-  require('./Type');
+
 };

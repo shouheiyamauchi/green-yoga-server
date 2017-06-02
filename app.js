@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const cors = require('cors')
 
+// connect to database
+require('./models').connect(process.env.GREEN_YOGA_DB);
+
 const index = require('./routes/index');
 const auth = require('./routes/api/v1/auth');
 const user = require('./routes/api/v1/user');
@@ -17,8 +20,6 @@ const receptionist = require('./routes/api/v1/receptionist');
 
 const app = express();
 
-// connect to database
-require('./models').connect(process.env.GREEN_YOGA_DB);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

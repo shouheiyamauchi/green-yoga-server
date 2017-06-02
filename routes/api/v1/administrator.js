@@ -1,6 +1,6 @@
+const typeController = require('../../../controllers/typeController')
 const express = require('express');
 const router = new express.Router();
-const typeController = require('../../controllers/typeController')
 
 router.get('/dashboard', (req, res) => {
   res.status(200).json({

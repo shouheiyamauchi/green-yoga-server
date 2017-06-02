@@ -1,5 +1,4 @@
 const Type = require('mongoose').model('Type');
-const mongoose = require('mongoose')
 
 exports.postTypes = (req, res) => {
   console.log('req: ', req)
