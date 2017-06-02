@@ -51,8 +51,8 @@ app.use('/api/v1/auth', auth);
 const authCheck = require('./middleware/auth-check');
 app.use('/api/v1/', authCheck);
 // middleware to prevent access to admin area
-const adminCheck = require('./middleware/admin-check');
-app.use('/api/v1/admin', adminCheck);
+// const adminCheck = require('./middleware/admin-check');
+// app.use('/api/v1/admin', adminCheck);
 
 // routes which require passing through middleware
 app.use('/api/v1/user', user);
