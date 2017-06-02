@@ -8,9 +8,5 @@ exports.postTypes = (req, res) => {
     image: req.body.image.trim()
   }
   const newType = new Type(typeData);
-  newType.save((err) => {
-    if (err) { return done(err); }
-
-    return done(null);
-  });
+  newType.save();
 };
