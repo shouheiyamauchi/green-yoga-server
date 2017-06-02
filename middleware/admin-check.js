@@ -5,6 +5,8 @@ module.exports = (req, res, next) => {
   if (req.user.role === "administrator") {
     return next();
   } else {
-    return res.status(401).end();
+    return res.status(401).json({
+      "You're not an authorized administator."
+    });
   };
 };
