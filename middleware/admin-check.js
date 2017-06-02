@@ -6,7 +6,7 @@ module.exports = (req, res, next) => {
     return next();
   } else {
     return res.status(401).json({
-      "You're not an authorized administator."
+      message: "You're not an authorized administator."
     });
   };
 };
