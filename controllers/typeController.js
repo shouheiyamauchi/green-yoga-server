@@ -35,7 +35,9 @@ exports.getTypes = (req,res) => {
   Type.find()
     .then(types => {
       console.log(types)
-      res.json({types: types})
+      res.json({
+        types
+      })
     })
 };
 
