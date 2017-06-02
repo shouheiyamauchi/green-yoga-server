@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   },
   password: String,
   role: String,
-  firstname: String,
+  firstName: String,
   lastName: String,
   dob: Date,
   line1: String,
@@ -20,7 +20,9 @@ const UserSchema = new mongoose.Schema({
   description: String,
   purchases: [],
   avatar: String,
-  active: Boolean
+  active: {
+    type: Boolean,
+    default: true
 });
 
 /**
