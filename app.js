@@ -13,6 +13,7 @@ const auth = require('./routes/api/v1/auth');
 const user = require('./routes/api/v1/user');
 const administrator = require('./routes/api/v1/administrator');
 const teacher = require('./routes/api/v1/teacher');
+const receptionist = require('./routes/api/v1/receptionist');
 
 const app = express();
 
@@ -42,9 +43,6 @@ const localLoginStrategy = require('./passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
-
-
-
 app.use('/', index);
 app.use('/api/v1/auth', auth);
 
@@ -65,6 +63,7 @@ app.use('/api/v1/receptionist', receptionistCheck);
 app.use('/api/v1/user', user);
 app.use('/api/v1/administrator', administrator);
 app.use('/api/v1/teacher', teacher);
+app.use('/api/v1/receptionist', receptionist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
