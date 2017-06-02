@@ -34,9 +34,9 @@ function validateTypesForm(payload) {
 exports.getTypes = (req,res) => {
   Type.find()
     .then(types => {
-      console.log(types)
       res.json({
-        types
+        types,
+        message: "The class types list has been successfully loaded."
       })
     })
 };
