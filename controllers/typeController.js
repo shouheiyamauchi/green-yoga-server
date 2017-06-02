@@ -1,7 +1,7 @@
 const Type = require('mongoose').model('Type');
 
 exports.postTypes = (req, res) => {
-  console.log('req: ', req)
+  console.log(req.body)
   const typeData = {
     name: req.body.name.trim(),
     description: req.body.description.trim(),
