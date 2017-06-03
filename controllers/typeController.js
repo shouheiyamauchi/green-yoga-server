@@ -84,9 +84,9 @@ exports.postType = (req, res) => {
 };
 
 exports.getType = (req,res) => {
-  console.log("YES OKAY")
   Type.findOne({ _id: req.params.id})
     .then(type => {
+      console.log(type)
       res.json(type)
     });
 };
