@@ -19,6 +19,9 @@ router.get('/', typeController.getTypes);
 // create a new class type
 router.post('/', [authCheck, administratorCheck], typeController.postType);
 
+// get a class type
+router.get('/:id', [authCheck, administratorCheck], typeController.getType);
+
 // edit a class type
 router.post('/:id', [authCheck, administratorCheck], typeController.updateType);
 

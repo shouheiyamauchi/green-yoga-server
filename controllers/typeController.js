@@ -83,6 +83,13 @@ exports.postType = (req, res) => {
   });
 };
 
+exports.getType = (req,res) => {
+  Type.findOne({ _id: req.params.id})
+    .then(type => {
+      res.json(type)
+    });
+};
+
 exports.updateType = (req, res) => {
   const validationResult = validateTypesForm(req.body);
   if (!validationResult.success) {
