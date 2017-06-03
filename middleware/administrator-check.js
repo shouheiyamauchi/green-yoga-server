@@ -36,7 +36,6 @@ module.exports = (req, res, next) => {
           errors: {}
         });
       };
-      return next();
     });
   });
 };
