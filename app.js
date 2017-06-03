@@ -49,8 +49,8 @@ app.use('/', index);
 app.use('/api/v1/auth', auth);
 
 // ensure user is authenticated
-// const authCheck = require('./middleware/auth-check');
-// app.use('/api/v1/', authCheck);
+const authCheck = require('./middleware/auth-check');
+app.use('/api/v1/', authCheck);
 // middleware to prevent access to administrator area
 const administratorCheck = require('./middleware/administrator-check');
 app.use('/api/v1/administrator', administratorCheck);
