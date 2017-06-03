@@ -1,7 +1,12 @@
+const express = require('express');
+const app = express();
+const authCheck = require('./auth-check');
+
 /**
  *  Middleware to check if user is administrator
  */
 module.exports = (req, res, next) => {
+  app.use(authCheck);
   if (req.user.role === "administrator") {
     return next();
   } else {
