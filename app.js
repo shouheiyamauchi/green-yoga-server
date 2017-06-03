@@ -66,6 +66,7 @@ app.use('/api/v1/user', user);
 app.use('/api/v1/administrator', administrator);
 app.use('/api/v1/teacher', teacher);
 app.use('/api/v1/receptionist', receptionist);
+
 app.use('/api/v1/types', types);
 
 // catch 404 and forward to error handler

@@ -4,12 +4,19 @@ const router = new express.Router();
 
 const app = express();
 
-// middleware to prevent access to administrator area
+// ensure user is authenticated
 const authCheck = require('../../../middleware/auth-check');
+// middleware to prevent access to administrator area
 const administratorCheck = require('../../../middleware/administrator-check');
+// middleware to prevent access to teacher area
+const teacherCheck = require('../../../middleware/teacher-check');
+// middleware to prevent access to receptionist area
+const receptionistCheck = require('../../../middleware/receptionist-check');
 
-router.get('/types', typeController.getTypes);
+// get full list of class types
+router.get('/', typeController.getTypes);
 
-router.post('/types', [authCheck, administratorCheck], typeController.postTypes);
+// create a new class type
+router.post('/', [authCheck, administratorCheck], typeController.postTypes);
 
 module.exports = router;
