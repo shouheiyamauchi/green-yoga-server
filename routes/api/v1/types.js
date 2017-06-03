@@ -17,6 +17,9 @@ const receptionistCheck = require('../../../middleware/receptionist-check');
 router.get('/', typeController.getTypes);
 
 // create a new class type
-router.post('/', [authCheck, administratorCheck], typeController.postTypes);
+router.post('/', [authCheck, administratorCheck], typeController.postType);
+
+// delete a class type
+router.delete('/:id', [authCheck, administratorCheck], typeController.deleteType);
 
 module.exports = router;

@@ -41,7 +41,7 @@ exports.getTypes = (req,res) => {
     })
 };
 
-exports.postTypes = (req, res) => {
+exports.postType = (req, res) => {
   const validationResult = validateTypesForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
@@ -81,4 +81,15 @@ exports.postTypes = (req, res) => {
       message: 'You have successfully signed up! Now you should be able to log in.'
     });
   });
+};
+
+exports.deleteType = function(req, res){
+	Type.findByIdAndRemove({_id: req.params.id},
+    function(err){
+    	if(err) {
+        res.status(400).json();
+      } else {
+        res.status(200).json();
+      };
+    });
 };
