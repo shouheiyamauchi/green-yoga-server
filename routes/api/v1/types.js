@@ -20,7 +20,7 @@ router.get('/', typeController.getTypes);
 router.post('/', [authCheck, administratorCheck], typeController.postType);
 
 // edit a class type
-router.post('/:id', [authCheck, administratorCheck], typeController.postType);
+router.post('/:id', [authCheck, administratorCheck], typeController.updateType);
 
 // delete a class type
 router.delete('/:id', [authCheck, administratorCheck], typeController.deleteType);
