@@ -5,6 +5,7 @@ const router = new express.Router();
 const app = express();
 
 // middleware to prevent access to administrator area
+const authCheck = require('../../../middleware/auth-check');
 const administratorCheck = require('../../../middleware/administrator-check');
 
 router.get('/types', typeController.getTypes);
