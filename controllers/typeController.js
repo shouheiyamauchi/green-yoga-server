@@ -72,14 +72,40 @@ exports.postType = (req, res) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        message: 'Failed to process the form.'
       });
     }
 
     return res.status(200).json({
       success: true,
-      message: 'You have successfully signed up! Now you should be able to log in.'
+      message: 'You have successfully created a new class type.'
     });
+  });
+};
+
+exports.updateType = (req, res) => {
+  const validationResult = validateTypesForm(req.body);
+  if (!validationResult.success) {
+    return res.status(400).json({
+      success: false,
+      message: validationResult.message,
+      errors: validationResult.errors
+    });
+  }
+  const typeData = {
+    name: req.body.name.trim(),
+    description: req.body.description.trim(),
+    image: req.body.image.trim()
+  }
+
+  Type.findOneAndUpdate({ _id: req.params.id }, typeData, {
+    new: true // returns new type
+  })
+  .then(type => {
+    res.status(200).json({
+      type,
+      message: "The class type has been successfully updated."
+    })
   });
 };
 
@@ -87,9 +113,15 @@ exports.deleteType = function(req, res){
 	Type.findByIdAndRemove({_id: req.params.id},
     function(err){
     	if(err) {
-        res.status(400).json();
+        res.status(400).json({
+          success: false,
+          message: 'Failed to remove class type.'
+        });
       } else {
-        res.status(200).json();
+        res.status(200).json({
+          success: true,
+          message: 'You have successfully deleted the class type.'
+        });
       };
     });
 };

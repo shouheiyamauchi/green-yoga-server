@@ -19,6 +19,9 @@ router.get('/', typeController.getTypes);
 // create a new class type
 router.post('/', [authCheck, administratorCheck], typeController.postType);
 
+// edit a class type
+router.post('/:id', [authCheck, administratorCheck], typeController.postType);
+
 // delete a class type
 router.delete('/:id', [authCheck, administratorCheck], typeController.deleteType);
 
