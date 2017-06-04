@@ -75,11 +75,11 @@ function validateSignupForm(payload, callback) {
       message = 'Check the form for errors.';
     }
 
-    return {
-      success: isFormValid,
-      message,
-      errors
-    };
+    return ({
+        success: isFormValid,
+        message,
+        errors
+      }, callback);
   });
 }
 
