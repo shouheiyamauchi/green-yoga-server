@@ -16,6 +16,7 @@ function validateSignupForm(payload) {
 
   User.findOne({ email: payload.email})
       .then(user => {
+        console.log("user:", user)
         const errors = {};
         let isFormValid = true;
         let message = '';
