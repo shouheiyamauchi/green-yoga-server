@@ -31,6 +31,7 @@ function validateSignupForm(payload) {
     }
   });
 
+  console.log("then what about here?");
 
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
     isFormValid = false;
