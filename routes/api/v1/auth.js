@@ -14,7 +14,7 @@ const router = new express.Router();
  */
 function validateSignupForm(payload, callback) {
   User.findOne({ email: payload.email}, (err, user) => {
-    console.log("user.email:", user.email)
+    console.log("user:", user)
     const errors = {};
     let isFormValid = true;
     let message = '';
