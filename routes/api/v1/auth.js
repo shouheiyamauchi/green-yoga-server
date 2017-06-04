@@ -21,6 +21,13 @@ function validateSignupForm(payload) {
     errors.email = 'Please provide a correct email address.';
   }
 
+  const user = User.findOne({ email: payload.email });
+  if (user !== null) {
+    isFormValid = false;
+    errors.email = 'An user with that email already exists.';
+  }
+
+
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
     isFormValid = false;
     errors.password = 'Password must have at least 8 characters.';
