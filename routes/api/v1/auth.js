@@ -17,18 +17,18 @@ function validateSignupForm(payload) {
   let isFormValid = true;
   let message = '';
 
-  console.log("TESTESTEST")
   if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
     isFormValid = false;
     errors.email = 'Please provide a correct email address.';
   }
 
-  const user = User.findOne({ email: payload.email });
-  console.log(user)
-  if (user !== null) {
-    isFormValid = false;
-    errors.email = 'An user with that email already exists.';
-  }
+  User.findOne({ email: payload.email }, function (err, user) {
+    console.log(user)
+    if (user.email === payload.email) {
+      isFormValid = false;
+      errors.email = 'An user with that email already exists.';
+    }
+  });
 
 
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
