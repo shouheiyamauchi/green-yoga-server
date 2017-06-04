@@ -23,7 +23,7 @@ function validateSignupForm(payload) {
   }
 
   User.findOne({ email: payload.email }, function (err, user) {
-    console.log(user)
+    console.log(user.email)
     if (user.email === payload.email) {
       isFormValid = false;
       errors.email = 'An user with that email already exists.';
