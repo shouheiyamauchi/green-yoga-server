@@ -1,6 +1,7 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
+const User = require('mongoose').model('User');
 
 const router = new express.Router();
 
@@ -12,66 +13,77 @@ const router = new express.Router();
  *                   errors tips, and a global message for the whole form.
  */
 function validateSignupForm(payload) {
-  const errors = {};
-  let isFormValid = true;
-  let message = '';
 
-  if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
-    isFormValid = false;
-    errors.email = 'Please provide a correct email address.';
-  }
+  User.findOne({ email: payload.email})
+      .then(user => {
+        const errors = {};
+        let isFormValid = true;
+        let message = '';
 
-  if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
-    isFormValid = false;
-    errors.password = 'Password must have at least 8 characters.';
-  }
+        if (!payload || typeof payload.email !== 'string' || !validator.isEmail(payload.email)) {
+          isFormValid = false;
+          errors.email = 'Please provide a correct email address.';
+        }
 
-  if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length === 0) {
-      isFormValid = false;
-      errors.firstName = 'Please provide your name.';
-    }
+        if (user.email === payload.email) {
+          isFormValid = false;
+          errors.email = 'This email has already been registered.';
+        }
 
-  if (!payload || typeof payload.lastName !== 'string' || payload.lastName.trim().length === 0) {
-    isFormValid = false;
-    errors.lastName = 'Please provide your last name.';
-  }
+        if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
+          isFormValid = false;
+          errors.password = 'Password must have at least 8 characters.';
+        }
 
-  if (!payload || payload.dob.trim().length === 0) {
-    isFormValid = false;
-    errors.dob = 'Please provide your date of birth.';
-  }
+        if (!payload || typeof payload.firstName !== 'string' || payload.firstName.trim().length === 0) {
+            isFormValid = false;
+            errors.firstName = 'Please provide your name.';
+          }
 
-  if (!payload || typeof payload.line1 !== 'string' || payload.line1.trim().length === 0) {
-    isFormValid = false;
-    errors.line1 = 'Please provide your address.';
-  }
+        if (!payload || typeof payload.lastName !== 'string' || payload.lastName.trim().length === 0) {
+          isFormValid = false;
+          errors.lastName = 'Please provide your last name.';
+        }
 
-  if (!payload || typeof payload.suburb !== 'string' || payload.suburb.trim().length === 0) {
-    isFormValid = false;
-    errors.suburb = 'Please provide your suburb.';
-  }
+        if (!payload || payload.dob.trim().length === 0) {
+          isFormValid = false;
+          errors.dob = 'Please provide your date of birth.';
+        }
 
-  if (!payload || typeof payload.state !== 'string' || payload.state.trim().length === 0) {
-    isFormValid = false;
-    errors.state = 'Please provide your state.';
-  }
+        if (!payload || typeof payload.line1 !== 'string' || payload.line1.trim().length === 0) {
+          isFormValid = false;
+          errors.line1 = 'Please provide your address.';
+        }
 
-  if (!payload || typeof payload.pcode !== 'string' || payload.pcode.trim().length === 0) {
-    isFormValid = false;
-    errors.pcode = 'Please provide your post code.';
-  }
+        if (!payload || typeof payload.suburb !== 'string' || payload.suburb.trim().length === 0) {
+          isFormValid = false;
+          errors.suburb = 'Please provide your suburb.';
+        }
 
-  console.log("is form valid:", isFormValid);
+        if (!payload || typeof payload.state !== 'string' || payload.state.trim().length === 0) {
+          isFormValid = false;
+          errors.state = 'Please provide your state.';
+        }
 
-  if (!isFormValid) {
-    message = 'Check the form for errors.';
-  }
+        if (!payload || typeof payload.pcode !== 'string' || payload.pcode.trim().length === 0) {
+          isFormValid = false;
+          errors.pcode = 'Please provide your post code.';
+        }
 
-  return {
-    success: isFormValid,
-    message,
-    errors
-  };
+        console.log("is form valid:", isFormValid);
+
+        if (!isFormValid) {
+          message = 'Check the form for errors.';
+        }
+
+        return {
+          success: isFormValid,
+          message,
+          errors
+        };
+      });
+
+
 }
 
 /**
