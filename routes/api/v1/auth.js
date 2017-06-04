@@ -14,7 +14,7 @@ const router = new express.Router();
  */
 function validateSignupForm(payload) {
   User.findOne({ email: payload.email}, function (err, user) {
-    console.log("user:", user)
+    console.log("user.email:", user.email)
     const errors = {};
     let isFormValid = true;
     let message = '';
@@ -69,7 +69,7 @@ function validateSignupForm(payload) {
       errors.pcode = 'Please provide your post code.';
     }
 
-    console.log("is form valid:", isFormValid);
+    console.log("errors:", errors);
 
     if (!isFormValid) {
       message = 'Check the form for errors.';
