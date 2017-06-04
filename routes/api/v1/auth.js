@@ -25,6 +25,7 @@ function validateSignupForm(payload) {
   User.findOne({ email: payload.email }, function (err, user) {
     console.log(user.email)
     if (user.email === payload.email) {
+      console.log("hits here??")
       isFormValid = false;
       errors.email = 'An user with that email already exists.';
     }
@@ -70,6 +71,8 @@ function validateSignupForm(payload) {
     isFormValid = false;
     errors.pcode = 'Please provide your post code.';
   }
+
+  console.log("is form valid:", isFormValid);
 
   if (!isFormValid) {
     message = 'Check the form for errors.';
