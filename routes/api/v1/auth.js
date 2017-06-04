@@ -22,16 +22,17 @@ function validateSignupForm(payload) {
     errors.email = 'Please provide a correct email address.';
   }
 
+  const userEmail = ''
   User.findOne({ email: payload.email }, function (err, user) {
-    console.log(user.email)
-    if (user.email === payload.email) {
-      console.log("hits here??")
-      isFormValid = false;
-      errors.email = 'An user with that email already exists.';
-    }
+    userEmail = user.email;
   });
 
-  console.log("then what about here?");
+    console.log("then what about here?");
+
+  if (userEmail ===payload.email) {
+    isFormValid = false;
+    errors.email = 'An user with that email already exists.';
+  };
 
   if (!payload || typeof payload.password !== 'string' || payload.password.trim().length < 8) {
     isFormValid = false;
