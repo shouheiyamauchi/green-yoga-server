@@ -24,7 +24,7 @@ function validateSignupForm(payload, callback) {
       errors.email = 'Please provide a correct email address.';
     }
 
-    if (user.email === payload.email) {
+    if (user !== null) {
       isFormValid = false;
       errors.email = 'This email has already been registered.';
     }
