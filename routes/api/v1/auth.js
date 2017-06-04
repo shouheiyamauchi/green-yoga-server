@@ -13,7 +13,7 @@ const router = new express.Router();
  *                   errors tips, and a global message for the whole form.
  */
 function validateSignupForm(payload, callback) {
-  User.findOne({ email: payload.email}, function (err, user) {
+  User.findOne({ email: payload.email}, (err, user) => {
     console.log("user.email:", user.email)
     const errors = {};
     let isFormValid = true;
@@ -69,16 +69,14 @@ function validateSignupForm(payload, callback) {
       errors.pcode = 'Please provide your post code.';
     }
 
-    console.log("errors:", errors);
-
     if (!isFormValid) {
       message = 'Check the form for errors.';
     }
 
     const msg = {
-        success: isFormValid,
-        message,
-        errors
+      success: isFormValid,
+      message,
+      errors
     };
 
     callback(msg);
@@ -119,7 +117,7 @@ function validateLoginForm(payload) {
 }
 
 router.post('/signup', (req, res, next) => {
-  validateSignupForm(req.body, function(validationResult){
+  validateSignupForm(req.body, (validationResult) => {
     console.log("final run")
     if (!validationResult.success) {
       return res.status(400).json({
