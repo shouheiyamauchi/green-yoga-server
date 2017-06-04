@@ -1,6 +1,7 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
+const User = require('mongoose').model('User');
 
 const router = new express.Router();
 
