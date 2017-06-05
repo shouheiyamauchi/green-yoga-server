@@ -131,7 +131,7 @@ router.post('/signup', (req, res, next) => {
       if (err) {
         return res.status(400).json({
           success: false,
-          message: 'Error: Could not process the form.'
+          message: 'Error: Failed to process the form.'
         });
       }
 
@@ -164,7 +164,7 @@ router.post('/login', (req, res, next) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Error: Could not process the form.'
+        message: 'Error: Failed to process the form.'
       });
     };
     return res.json({

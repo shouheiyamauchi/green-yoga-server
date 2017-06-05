@@ -72,7 +72,7 @@ exports.postType = (req, res) => {
 
       return res.status(400).json({
         success: false,
-        message: 'Failed to process the form.'
+        message: 'Error: Failed to process the form.'
       });
     }
 
