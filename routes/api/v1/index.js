@@ -9,7 +9,7 @@ const authCheck = require('../../../middleware/auth-check');
 
 const S3_BUCKET = process.env.S3_BUCKET;
 
-router.get('/sign-s3', (req, res) => {
+router.get('/sign-s3', authCheck, (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
