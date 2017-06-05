@@ -18,6 +18,7 @@ const administrator = require('./routes/api/v1/administrator');
 const teacher = require('./routes/api/v1/teacher');
 const receptionist = require('./routes/api/v1/receptionist');
 const types = require('./routes/api/v1/types');
+const indexapi = require('./routes/api/v1/index');
 
 const app = express();
 
@@ -68,6 +69,7 @@ app.use('/api/v1/teacher', teacher);
 app.use('/api/v1/receptionist', receptionist);
 
 app.use('/api/v1/types', types);
+app.use('/api/v1/', indexapi);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
