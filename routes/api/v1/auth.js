@@ -14,7 +14,7 @@ const router = new express.Router();
  */
 function validateSignupForm(payload, callback) {
   // find if user with the same email exists in database
-  User.findOne({ email: payload.email}, (err, user) => {=
+  User.findOne({ email: payload.email}, (err, user) => {
     const errors = {};
     let isFormValid = true;
     let message = '';
