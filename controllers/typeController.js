@@ -21,7 +21,7 @@ function validateTypesForm(payload) {
     }
 
   if (!isFormValid) {
-    message = 'Check the form for errors.';
+    message = 'Please check the form for errors:';
   }
 
   return {
@@ -63,7 +63,7 @@ exports.postType = (req, res) => {
         // the 409 HTTP status code is for conflict error
         return res.status(409).json({
           success: false,
-          message: 'Check the form for errors.',
+          message: 'Please check the form for errors:',
           errors: {
             email: 'A class type with that name already exists.'
           }
@@ -113,7 +113,7 @@ exports.updateType = (req, res) => {
   .then(type => {
     res.status(200).json({
       type,
-      message: "The class type has been successfully updated."
+      message: "You have successfully updated the class type."
     })
   });
 };
