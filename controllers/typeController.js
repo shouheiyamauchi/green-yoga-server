@@ -65,7 +65,7 @@ exports.postType = (req, res) => {
           success: false,
           message: 'Please check the form for errors:',
           errors: {
-            email: 'A class type with that name already exists.'
+            name: 'A class type with that name already exists.'
           }
         });
       }
