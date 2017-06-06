@@ -25,17 +25,17 @@ function validateLessonForm(payload) {
       errors.endTime = 'Please provide an end time.';
     }
 
-  if (!payload || typeof payload.user_id !== 'string' || payload.user_id.trim().length === 0) {
+  if (!payload || !mongoose.Types.ObjectId.isValid(payload.user_id)) {
       isFormValid = false;
       errors.user_id = 'Please select a teacher.';
     }
 
-  if (!payload || typeof payload.type_id !== 'string' || payload.type_id.trim().length === 0) {
+  if (!payload || !mongoose.Types.ObjectId.isValid(payload.type_id)) {
       isFormValid = false;
       errors.type_id = 'Please select a class type.';
     }
 
-  if (!payload || typeof payload.location_id !== 'string' || payload.location_id.trim().length === 0) {
+  if (!payload || !mongoose.Types.ObjectId.isValid(payload.location_id)) {
       isFormValid = false;
       errors.location_id = 'Please select a location.';
     }
