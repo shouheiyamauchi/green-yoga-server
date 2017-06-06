@@ -1,7 +1,6 @@
 const Location = require('mongoose').model('Location');
 
 function validateLocationForm(payload) {
-  console.log("point 1")
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -16,8 +15,7 @@ function validateLocationForm(payload) {
       errors.address = 'Please provide an address.';
     }
 
-  if (!payload || typeof parseInt(payload.latitude) !== 'number' || typeof parseInt(payload.longitude) !== 'number'
-    || isNaN(parseInt(payload.latitude)) || isNaN(parseInt(payload.latitude))) {
+  if (!payload || isNaN(parseInt(payload.latitude)) || isNaN(parseInt(payload.latitude))) {
       isFormValid = false;
       errors.latlon = 'The latitude and longitude of the address weren\'t loaded correctly.';
     }
@@ -25,7 +23,7 @@ function validateLocationForm(payload) {
   if (!isFormValid) {
     message = 'Please check the form for errors:';
   }
-  console.log("point 2: ", errors)
+
   return {
     success: isFormValid,
     message,
@@ -45,7 +43,6 @@ exports.getLocations = (req,res) => {
 
 exports.postLocation = (req, res) => {
   const validationResult = validateLocationForm(req.body);
-  console.log("point 3")
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
@@ -53,6 +50,7 @@ exports.postLocation = (req, res) => {
       errors: validationResult.errors
     });
   }
+
   const locationData = {
     name: req.body.name.trim(),
     address: req.body.address.trim(),
@@ -60,10 +58,6 @@ exports.postLocation = (req, res) => {
     longitude: parseInt(req.body.longitude.trim()),
     description: req.body.description.trim()
   }
-
-  console.log("location data: ", locationData);
-  console.log(typeof locationData.latitude);
-  console.log(typeof locationData.longitude);
 
   const newLocation = new Location(locationData);
   newLocation.save((err) => {
