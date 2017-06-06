@@ -16,7 +16,8 @@ function validateLocationForm(payload) {
       errors.address = 'Please provide an address.';
     }
 
-  if (!payload || typeof parseInt(payload.latitude) !== 'number' || typeof parseInt(payload.longitude) !== 'number') {
+  if (!payload || typeof parseInt(payload.latitude) !== 'number' || typeof parseInt(payload.longitude) !== 'number'
+    || parseInt(payload.latitude).isNaN() || parseInt(payload.latitude).isNaN()) {
       isFormValid = false;
       errors.latlon = 'The latitude and longitude of the address weren\'t loaded correctly.';
     }
