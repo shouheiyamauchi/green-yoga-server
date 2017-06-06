@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 // define the Class model schema
 const PassSchema = new mongoose.Schema({
-  name: String,
+  name: {
+    type: String,
+    index: { unique: true }
+  },
   price: Number,
   uses: Number,
   expiry: Date

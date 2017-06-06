@@ -11,10 +11,10 @@ module.exports.connect = (uri) => {
   });
 
   // load models
-  require('./Type');
-  require('./User');
   require('./Attendance');
   require('./Class');
+  require('./Location');
   require('./Pass');
-
+  require('./Type');
+  require('./User');
 };

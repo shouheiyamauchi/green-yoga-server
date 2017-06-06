@@ -11,19 +11,23 @@ const cors = require('cors')
 // connect to database
 require('./models').connect(process.env.GREEN_YOGA_DB);
 
+// import routes
 const index = require('./routes/index');
+
+// import API routes
+const indexapi = require('./routes/api/v1/index');
 const auth = require('./routes/api/v1/auth');
+const locations = require('./routes/api/v1/locations');
 const user = require('./routes/api/v1/user');
 const types = require('./routes/api/v1/types');
-const indexapi = require('./routes/api/v1/index');
 
 const app = express();
-
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// set up CORS
 app.use(cors())
 
 // uncomment after placing your favicon in /public
@@ -43,27 +47,14 @@ const localLoginStrategy = require('./passport/local-login');
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
+
+// set up routes
 app.use('/', index);
-app.use('/api/v1/auth', auth);
-
-// ensure user is authenticated
-// const authCheck = require('./middleware/auth-check');
-// app.use('/api/v1/', authCheck);
-// middleware to prevent access to administrator area
-const administratorCheck = require('./middleware/administrator-check');
-app.use('/api/v1/administrator', administratorCheck);
-// middleware to prevent access to teacher area
-const teacherCheck = require('./middleware/teacher-check');
-app.use('/api/v1/teacher', teacherCheck);
-// middleware to prevent access to receptionist area
-const receptionistCheck = require('./middleware/receptionist-check');
-app.use('/api/v1/receptionist', receptionistCheck);
-
-// routes which require passing through middleware
-app.use('/api/v1/user', user);
-
-app.use('/api/v1/types', types);
 app.use('/api/v1/', indexapi);
+app.use('/api/v1/auth', auth);
+app.use('/api/v1/locations', locations);
+app.use('/api/v1/user', user);
+app.use('/api/v1/types', types);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
