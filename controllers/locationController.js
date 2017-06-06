@@ -34,6 +34,7 @@ function validateLocationForm(payload) {
 exports.getLocations = (req,res) => {
   Location.find()
     .then(locations => {
+      console.log("locations: ", locations)
       res.json({
         locations,
         message: "The locations list has been successfully loaded."
