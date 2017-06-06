@@ -24,6 +24,9 @@ function validateLocationForm(payload) {
     message = 'Please check the form for errors:';
   }
 
+  console.log(success)
+  console.log(errors)
+
   return {
     success: isFormValid,
     message,
