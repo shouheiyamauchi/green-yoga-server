@@ -50,6 +50,7 @@ exports.postLocation = (req, res) => {
       errors: validationResult.errors
     });
   }
+
   const locationData = {
     name: req.body.name.trim(),
     address: req.body.address.trim(),
@@ -57,10 +58,6 @@ exports.postLocation = (req, res) => {
     longitude: parseInt(req.body.longitude.trim()),
     description: req.body.description.trim()
   }
-
-  console.log("location data: ", locationData);
-  console.log(typeof locationData.latitude);
-  console.log(typeof locationData.longitude);
 
   const newLocation = new Location(locationData);
   newLocation.save((err) => {
@@ -93,7 +90,6 @@ exports.postLocation = (req, res) => {
 exports.getLocation = (req,res) => {
   Location.findOne({ _id: req.params.id})
     .then(location => {
-      console.log("location: ", location)
       res.json({
         location
       })
