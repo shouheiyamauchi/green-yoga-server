@@ -1,4 +1,4 @@
-const Type = require('mongoose').model('Location');
+const Location = require('mongoose').model('Location');
 
 function validateLocationForm(payload) {
   const errors = {};
