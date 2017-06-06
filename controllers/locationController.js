@@ -24,7 +24,7 @@ function validateLocationForm(payload) {
   if (!isFormValid) {
     message = 'Please check the form for errors:';
   }
-  console.log("point 2")
+  console.log("point 2: ", errors)
   return {
     success: isFormValid,
     message,
@@ -44,7 +44,7 @@ exports.getLocations = (req,res) => {
 
 exports.postLocation = (req, res) => {
   const validationResult = validateLocationForm(req.body);
-  console.log("point 1")
+  console.log("point 3")
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
