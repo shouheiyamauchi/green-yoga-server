@@ -16,7 +16,7 @@ module.exports = new PassportLocalStrategy({
     role: req.body.role.trim(),
     firstName: req.body.firstName.trim(),
     lastName: req.body.lastName.trim(),
-    dob: req.body.dob,
+    dob: req.body.dob.trim(),
     line1: req.body.line1.trim(),
     line2: req.body.line2.trim(),
     suburb: req.body.suburb.trim(),

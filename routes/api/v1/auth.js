@@ -1,6 +1,7 @@
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
+const moment = require('moment');
 const User = require('mongoose').model('User');
 
 const router = new express.Router();
@@ -45,9 +46,11 @@ function validateSignupForm(payload, callback) {
       errors.lastName = 'Please provide your last name.';
     }
 
-    if (!payload || payload.dob.trim().length === 0) {
+    const dateFormat = "DD/MM/YYYY";
+
+    if (!payload || !moment((payload.dob.trim()), dateFormat).isValid() || payload.dob.trim().length === 0) {
       isFormValid = false;
-      errors.dob = 'Please provide your date of birth.';
+      errors.dob = 'Please provide your date of birth in the correct format (DD/MM/YYY).';
     }
 
     if (!payload || typeof payload.line1 !== 'string' || payload.line1.trim().length === 0) {

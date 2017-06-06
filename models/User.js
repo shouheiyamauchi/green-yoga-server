@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
   role: String,
   firstName: String,
   lastName: String,
-  dob: Date,
+  dob: String,
   line1: String,
   line2: String,
   suburb: String,
