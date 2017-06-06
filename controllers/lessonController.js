@@ -1,15 +1,16 @@
-const Class = require('mongoose').model('Class');
-
+const Lesson = require('mongoose').model('Lesson');
+const mongoose = require('mongoose');
 const moment = require('moment');
 
-// "class" is a reserved name so had to use "lesson" as the singular noun
-
-function validateClassForm(payload) {
+// "class" is a reserved name so had to use "lesson" instead
+function validateLessonForm(payload) {
   const errors = {};
   let isFormValid = true;
   let message = '';
 
-  if (!payload || typeof payload.date !== 'string' || payload.date.trim().length === 0) {
+  // check that date entered is in correct format
+  const dateFormat = "DD/MM/YYYY";
+  if (!payload || !moment((payload.date.trim()), dateFormat).isValid() || payload.date.trim().length === 0) {
       isFormValid = false;
       errors.date = 'Please provide a valid date.';
     }
@@ -50,18 +51,18 @@ function validateClassForm(payload) {
   };
 }
 
-exports.getClasses = (req,res) => {
-  Class.find()
-    .then(classes => {
+exports.getLessons = (req,res) => {
+  Lesson.find()
+    .then(lessons => {
       res.json({
-        classes,
+        lessons,
         message: "The classes list has been successfully loaded."
       })
     })
 };
 
-exports.postClass = (req, res) => {
-  const validationResult = validateClassForm(req.body);
+exports.postLesson = (req, res) => {
+  const validationResult = validateLessonForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
@@ -69,13 +70,16 @@ exports.postClass = (req, res) => {
       errors: validationResult.errors
     });
   }
-  const classData = {
-    name: req.body.name.trim(),
-    description: req.body.description.trim(),
-    image: req.body.image.trim()
+  // make sure the date formatting is universal
+  const dateFormat = "DD/MM/YYYY";
+  const lessonData = {
+    date: moment(req.body.date.trim(), dateFormat).format("DD/MM/YYYY"),
+    startTime: req.body.startTime.trim(),
+    endTime: req.body.endTime.trim(),
+    approved: true
   }
-  const newClass = new Class(classData);
-  newClass.save((err) => {
+  const newLesson = new Lesson(lessonData);
+  newLesson.save((err) => {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
         // the 11000 Mongo code is for a duplication (name) error
@@ -102,8 +106,8 @@ exports.postClass = (req, res) => {
   });
 };
 
-exports.getClass = (req,res) => {
-  Class.findOne({ _id: req.params.id})
+exports.getLesson = (req,res) => {
+  Lesson.findOne({ _id: req.params.id})
     .then(lesson => {
       res.json({
         lesson
@@ -111,8 +115,8 @@ exports.getClass = (req,res) => {
     });
 };
 
-exports.updateClass = (req, res) => {
-  const validationResult = validateClassForm(req.body);
+exports.updateLesson = (req, res) => {
+  const validationResult = validateLessonForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
@@ -120,13 +124,15 @@ exports.updateClass = (req, res) => {
       errors: validationResult.errors
     });
   }
-  const classData = {
-    name: req.body.name.trim(),
-    description: req.body.description.trim(),
-    image: req.body.image.trim()
+  // make sure the date formatting is universal
+  const dateFormat = "DD/MM/YYYY";
+  const lessonData = {
+    date: moment(req.body.date.trim(), dateFormat).format("DD/MM/YYYY"),
+    startTime: req.body.startTime.trim(),
+    endTime: req.body.endTime.trim(),
+    approved: true
   }
-
-  Class.findOneAndUpdate({ _id: req.params.id }, classData, {
+  Lesson.findOneAndUpdate({ _id: req.params.id }, lessonData, {
     new: true // returns new class
   })
   .then(lesson => {
@@ -137,8 +143,8 @@ exports.updateClass = (req, res) => {
   });
 };
 
-exports.deleteClass = function(req, res){
-	Class.findByIdAndRemove({_id: req.params.id},
+exports.deleteLesson = function(req, res){
+	Lesson.findByIdAndRemove({_id: req.params.id},
     function(err){
     	if(err) {
         res.status(400).json({

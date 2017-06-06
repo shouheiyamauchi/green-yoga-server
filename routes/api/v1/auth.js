@@ -46,8 +46,8 @@ function validateSignupForm(payload, callback) {
       errors.lastName = 'Please provide your last name.';
     }
 
+    // check that date entered is in correct format
     const dateFormat = "DD/MM/YYYY";
-
     if (!payload || !moment((payload.dob.trim()), dateFormat).isValid() || payload.dob.trim().length === 0) {
       isFormValid = false;
       errors.dob = 'Please format your D.O.B.';

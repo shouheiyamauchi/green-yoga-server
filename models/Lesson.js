@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 // define the Class model schema
-const ClassSchema = new mongoose.Schema({
+const LessonSchema = new mongoose.Schema({
   date: String,
   startTime: String,
   endTime: String,
@@ -13,4 +13,4 @@ const ClassSchema = new mongoose.Schema({
   location_id: mongoose.Schema.Types.ObjectId,
 });
 
-module.exports = mongoose.model('Class', ClassSchema);
+module.exports = mongoose.model('Lesson', LessonSchema);

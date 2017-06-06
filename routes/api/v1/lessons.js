@@ -1,4 +1,4 @@
-const classController = require('../../../controllers/classController')
+const lessonController = require('../../../controllers/lessonController')
 const express = require('express');
 const router = new express.Router();
 
@@ -14,18 +14,18 @@ const teacherCheck = require('../../../middleware/teacher-check');
 const receptionistCheck = require('../../../middleware/receptionist-check');
 
 // get full list of class
-router.get('/', classController.getClasses);
+router.get('/', lessonController.getLessons);
 
 // create a new class
-router.post('/', [authCheck, teacherCheck], classController.postClass);
+router.post('/', [authCheck, teacherCheck], lessonController.postLesson);
 
 // get a class
-router.get('/:id', [authCheck, administratorCheck], classController.getClass);
+router.get('/:id', [authCheck, administratorCheck], lessonController.getLesson);
 
 // edit a class
-router.post('/:id', [authCheck, administratorCheck], classController.updateClass);
+router.post('/:id', [authCheck, administratorCheck], lessonController.updateLesson);
 
 // delete a class
-router.delete('/:id', [authCheck, administratorCheck], classController.deleteClass);
+router.delete('/:id', [authCheck, administratorCheck], lessonController.deleteLesson);
 
 module.exports = router;

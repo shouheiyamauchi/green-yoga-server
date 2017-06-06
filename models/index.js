@@ -12,7 +12,7 @@ module.exports.connect = (uri) => {
 
   // load models
   require('./Attendance');
-  require('./Class');
+  require('./Lesson');
   require('./Location');
   require('./Pass');
   require('./Type');
