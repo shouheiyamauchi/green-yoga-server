@@ -61,6 +61,11 @@ exports.postLocation = (req, res) => {
     longitude: parseInt(req.body.longitude.trim()),
     description: req.body.description.trim()
   }
+
+  console.log("location data: ", locationData);
+  console.log(typeof locationData.latitude);
+  console.log(typeof locationData.longitude);
+
   const newLocation = new Location(locationData);
   newLocation.save((err) => {
     if (err) {
