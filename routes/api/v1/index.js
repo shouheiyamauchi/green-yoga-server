@@ -38,7 +38,7 @@ router.get('/sign-s3', authCheck, (req, res) => {
 
 // get full list of teachers
 router.get('/teachers', (req,res) => {
-  User.find({ role: 'teacher' })
+  User.find()
     .then(teachers => {
       res.json({
         teachers: {
@@ -48,7 +48,7 @@ router.get('/teachers', (req,res) => {
           description: teachers.description,
           avatar: teachers.avatar,
         },
-        message: "The class types list has been successfully loaded."
+        message: "The teachers list has been successfully loaded."
       })
     })
 });
