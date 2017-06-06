@@ -35,7 +35,7 @@ exports.getLocations = (req,res) => {
   Location.find()
     .then(locations => {
       res.json({
-        types,
+        locations,
         message: "The locations list has been successfully loaded."
       })
     })
@@ -87,9 +87,9 @@ exports.postLocation = (req, res) => {
 
 exports.getLocation = (req,res) => {
   Location.findOne({ _id: req.params.id})
-    .then(type => {
+    .then(location => {
       res.json({
-        type
+        location
       })
     });
 };
