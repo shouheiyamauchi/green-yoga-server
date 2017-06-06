@@ -81,7 +81,6 @@ exports.postLesson = (req, res) => {
     location_id: mongoose.Types.ObjectId(req.body.location_id.trim()),
     approved: true
   }
-  console.log("lessonData: ", lessonData)
   const newLesson = new Lesson(lessonData);
   newLesson.save((err) => {
     if (err) {
