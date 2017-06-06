@@ -1,6 +1,7 @@
 const Location = require('mongoose').model('Location');
 
 function validateLocationForm(payload) {
+  console.log("point 1")
   const errors = {};
   let isFormValid = true;
   let message = '';
@@ -23,7 +24,7 @@ function validateLocationForm(payload) {
   if (!isFormValid) {
     message = 'Please check the form for errors:';
   }
-
+  console.log("point 2")
   return {
     success: isFormValid,
     message,
@@ -34,7 +35,6 @@ function validateLocationForm(payload) {
 exports.getLocations = (req,res) => {
   Location.find()
     .then(locations => {
-      console.log("locations: ", locations)
       res.json({
         locations,
         message: "The locations list has been successfully loaded."
@@ -44,6 +44,7 @@ exports.getLocations = (req,res) => {
 
 exports.postLocation = (req, res) => {
   const validationResult = validateLocationForm(req.body);
+  console.log("point 1")
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
