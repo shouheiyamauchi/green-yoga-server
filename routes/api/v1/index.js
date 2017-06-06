@@ -1,6 +1,7 @@
 const express = require('express');
 const aws = require('aws-sdk');
 const router = new express.Router();
+const User = require('mongoose').model('User');
 
 const app = express();
 
@@ -33,6 +34,23 @@ router.get('/sign-s3', authCheck, (req, res) => {
     res.write(JSON.stringify(returnData));
     res.end();
   });
+});
+
+// get full list of teachers
+router.get('/teachers', (req,res) => {
+  User.find({ role: 'teacher' })
+    .then(teachers => {
+      res.json({
+        teachers: {
+          _id: teachers._id,
+          firstName: teachers.firstName,
+          lastName: teachers.lastName,
+          description: teachers.description,
+          avatar: teachers.avatar,
+        },
+        message: "The class types list has been successfully loaded."
+      })
+    })
 });
 
 module.exports = router;
