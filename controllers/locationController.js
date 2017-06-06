@@ -57,8 +57,8 @@ exports.postLocation = (req, res) => {
   const locationData = {
     name: req.body.name.trim(),
     address: req.body.address.trim(),
-    latitude: req.body.latitude.trim(),
-    longitude: req.body.longitude.trim(),
+    latitude: parseInt(req.body.latitude.trim()),
+    longitude: parseInt(req.body.longitude.trim()),
     description: req.body.description.trim()
   }
   const newLocation = new Location(locationData);
@@ -110,8 +110,8 @@ exports.updateLocation = (req, res) => {
   const locationData = {
     name: req.body.name.trim(),
     address: req.body.address.trim(),
-    latitude: req.body.latitude.trim(),
-    longitude: req.body.longitude.trim(),
+    latitude: parseInt(req.body.latitude.trim()),
+    longitude: parseInt(req.body.longitude.trim()),
     description: req.body.description.trim()
   }
 
