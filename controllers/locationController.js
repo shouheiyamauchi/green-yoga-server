@@ -93,6 +93,7 @@ exports.postLocation = (req, res) => {
 exports.getLocation = (req,res) => {
   Location.findOne({ _id: req.params.id})
     .then(location => {
+      console.log("location: ", location)
       res.json({
         location
       })
