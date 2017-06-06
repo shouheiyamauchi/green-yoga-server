@@ -42,7 +42,7 @@ exports.getTypes = (req,res) => {
 };
 
 exports.postType = (req, res) => {
-  const validationResult = validateTypesForm(req.body);
+  const validationResult = validateTypeForm(req.body);
   if (!validationResult.success) {
     return res.status(400).json({
       success: false,
