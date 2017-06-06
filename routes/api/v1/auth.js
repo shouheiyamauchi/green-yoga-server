@@ -50,7 +50,7 @@ function validateSignupForm(payload, callback) {
 
     if (!payload || !moment((payload.dob.trim()), dateFormat).isValid() || payload.dob.trim().length === 0) {
       isFormValid = false;
-      errors.dob = 'Please provide your date of birth in the correct format (DD/MM/YYY).';
+      errors.dob = 'Please format your D.O.B.';
     }
 
     if (!payload || typeof payload.line1 !== 'string' || payload.line1.trim().length === 0) {
