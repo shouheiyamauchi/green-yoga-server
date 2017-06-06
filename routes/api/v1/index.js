@@ -38,7 +38,7 @@ router.get('/sign-s3', authCheck, (req, res) => {
 
 // get full list of teachers
 router.get('/teachers', (req,res) => {
-  User.find()
+  User.find({ role: "teacher" })
     .then(teachers => {
       function teacherDetail(teacher) {
         return {
