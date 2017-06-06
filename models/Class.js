@@ -1,14 +1,16 @@
 const mongoose = require('mongoose');
 // define the Class model schema
 const ClassSchema = new mongoose.Schema({
-  startTime: Date,
-  endTime: Date,
+  date: String,
+  startTime: String,
+  endTime: String,
   approved: {
     type: Boolean,
     default: false
   },
   user_id: mongoose.Schema.Types.ObjectId,
-  type_id: mongoose.Schema.Types.ObjectId
+  type_id: mongoose.Schema.Types.ObjectId,
+  location_id: mongoose.Schema.Types.ObjectId,
 });
 
 module.exports = mongoose.model('Class', ClassSchema);
