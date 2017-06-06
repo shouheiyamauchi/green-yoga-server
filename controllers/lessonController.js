@@ -76,8 +76,12 @@ exports.postLesson = (req, res) => {
     date: moment(req.body.date.trim(), dateFormat).format("DD/MM/YYYY"),
     startTime: req.body.startTime.trim(),
     endTime: req.body.endTime.trim(),
+    user_id: mongoose.Types.ObjectId(req.body.user_id.trim()),
+    type_id: mongoose.Types.ObjectId(req.body.type_id.trim()),
+    location_id: mongoose.Types.ObjectId(req.body.location_id.trim()),
     approved: true
   }
+  console.log("lessonData: ", lessonData)
   const newLesson = new Lesson(lessonData);
   newLesson.save((err) => {
     if (err) {
@@ -130,6 +134,9 @@ exports.updateLesson = (req, res) => {
     date: moment(req.body.date.trim(), dateFormat).format("DD/MM/YYYY"),
     startTime: req.body.startTime.trim(),
     endTime: req.body.endTime.trim(),
+    user_id: mongoose.Types.ObjectId(req.body.user_id.trim()),
+    type_id: mongoose.Types.ObjectId(req.body.type_id.trim()),
+    location_id: mongoose.Types.ObjectId(req.body.location_id.trim()),
     approved: true
   }
   Lesson.findOneAndUpdate({ _id: req.params.id }, lessonData, {
