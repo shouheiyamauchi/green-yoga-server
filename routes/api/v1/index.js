@@ -40,14 +40,19 @@ router.get('/sign-s3', authCheck, (req, res) => {
 router.get('/teachers', (req,res) => {
   User.find()
     .then(teachers => {
+      function teacherDetail(teacher) {
+        return {
+          _id: teacher._id,
+          firstName: teacher.firstName,
+          lastName: teacher.lastName,
+          description: teacher.description,
+          avatar: teacher.avatar,
+        }
+      };
+
+      teachers = teachers.map(teacherDetail);
       res.json({
-        teachers: {
-          _id: teachers._id,
-          firstName: teachers.firstName,
-          lastName: teachers.lastName,
-          description: teachers.description,
-          avatar: teachers.avatar,
-        },
+        teachers,
         message: "The teachers list has been successfully loaded."
       })
     })
