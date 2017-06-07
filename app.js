@@ -53,7 +53,7 @@ passport.use('local-login', localLoginStrategy);
 // set up routes
 app.use('/', index);
 app.use('/api/v1/', indexapi);
-app.use('/api/v1/attendance', attendance);
+app.use('/api/v1/attendances', attendances);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/lessons', lessons);
 app.use('/api/v1/locations', locations);
