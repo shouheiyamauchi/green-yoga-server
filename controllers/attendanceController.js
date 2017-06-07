@@ -56,6 +56,26 @@ exports.checkAttendance = (req,res) => {
     });
 };
 
+exports.checkDeleteAttendance = (req,res) => {
+  Attendance.findOne({ user_id: req.query.user_id, lesson_id: req.query.lesson_id })
+    .then(attendance => {
+      Attendance.findByIdAndRemove({_id: attendance._id},
+        function(err){
+        	if(err) {
+            res.status(400).json({
+              success: false,
+              message: 'Failed to remove attendance.'
+            });
+          } else {
+            res.status(200).json({
+              success: true,
+              message: 'You have successfully deleted the attendance.'
+            });
+          };
+        });
+    });
+};
+
 exports.userCheckAttendance = (req,res) => {
   Attendance.find({ user_id: req.params.id })
     .then(attendances => {
