@@ -56,6 +56,24 @@ exports.checkAttendance = (req,res) => {
     });
 };
 
+exports.userCheckAttendance = (req,res) => {
+  Attendance.find({ user_id: req.params.id })
+    .then(attendance => {
+      res.json({
+        attendance
+      })
+    });
+};
+
+exports.lessonCheckAttendance = (req,res) => {
+  Attendance.find({ lesson_id: req.params.id })
+    .then(attendance => {
+      res.json({
+        attendance
+      })
+    });
+};
+
 exports.deleteAttendance = function(req, res){
 	Attendance.findByIdAndRemove({_id: req.params.id},
     function(err){
