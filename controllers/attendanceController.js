@@ -43,6 +43,12 @@ exports.getAttendance = (req,res) => {
 
 exports.checkAttendance = (req,res) => {
   console.log(req.query)
+  Attendance.findOne({ user_id: req.query.user_id })
+    .then(attendance => {
+      res.json({
+        attendance
+      })
+    });
 };
 
 exports.deleteAttendance = function(req, res){
