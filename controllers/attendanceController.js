@@ -42,7 +42,7 @@ exports.getAttendance = (req,res) => {
 };
 
 exports.checkAttendance = (req,res) => {
-  console.log(req.query)
+  console.log("does this happen")
   Attendance.findOne({ user_id: mongoose.Types.ObjectId(req.query.user_id), class_id: mongoose.Types.ObjectId(req.query.class_id) })
     .then(attendance => {
       res.json({
