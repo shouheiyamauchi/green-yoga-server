@@ -58,18 +58,18 @@ exports.checkAttendance = (req,res) => {
 
 exports.userCheckAttendance = (req,res) => {
   Attendance.find({ user_id: req.params.id })
-    .then(attendance => {
+    .then(attendances => {
       res.json({
-        attendance
+        attendances
       })
     });
 };
 
 exports.lessonCheckAttendance = (req,res) => {
   Attendance.find({ lesson_id: req.params.id })
-    .then(attendance => {
+    .then(attendances => {
       res.json({
-        attendance
+        attendances
       })
     });
 };
