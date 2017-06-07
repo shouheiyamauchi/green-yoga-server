@@ -16,6 +16,7 @@ const index = require('./routes/index');
 
 // import API routes
 const indexapi = require('./routes/api/v1/index');
+const attendance = require('./routes/api/v1/attendance');
 const auth = require('./routes/api/v1/auth');
 const lessons = require('./routes/api/v1/lessons');
 const locations = require('./routes/api/v1/locations');
@@ -52,6 +53,7 @@ passport.use('local-login', localLoginStrategy);
 // set up routes
 app.use('/', index);
 app.use('/api/v1/', indexapi);
+app.use('/api/v1/attendance', attendance);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/lessons', lessons);
 app.use('/api/v1/locations', locations);
