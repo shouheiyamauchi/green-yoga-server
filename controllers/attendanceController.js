@@ -45,6 +45,7 @@ exports.checkAttendance = (req,res) => {
   console.log(req.query)
   Attendance.findOne({ user_id: req.query.user_id, class_id: req.query.class_id })
     .then(attendance => {
+      console.log(attendance)
       if (attendance == null) {
         res.json({
           attendance: false
