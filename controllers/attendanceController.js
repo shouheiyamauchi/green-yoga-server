@@ -13,8 +13,8 @@ exports.getAttendances = (req,res) => {
 
 exports.postAttendance = (req, res) => {
   const attendanceData = {
-    user_id: mongoose.Types.ObjectId(req.body.user_id.trim()),
-    class_id: mongoose.Types.ObjectId(req.body.class_id.trim())
+    user_id: mongoose.Types.ObjectId(req.params.user_id.trim()),
+    lesson_id: mongoose.Types.ObjectId(req.params.lesson_id.trim())
   }
   const newAttendance = new Attendance(attendanceData);
   newAttendance.save((err) => {
