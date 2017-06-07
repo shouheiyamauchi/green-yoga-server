@@ -23,7 +23,7 @@ router.post('/', attendanceController.postAttendance);
 router.get('/:id', attendanceController.getAttendance);
 
 // check an attendance exists
-router.get('/check', attendanceController.checkAttendance);
+router.get('/verify', attendanceController.checkAttendance);
 
 // delete a attendance
 router.delete('/:id', attendanceController.deleteAttendance);
