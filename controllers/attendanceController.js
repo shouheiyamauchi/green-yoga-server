@@ -12,10 +12,12 @@ exports.getAttendances = (req,res) => {
 };
 
 exports.postAttendance = (req, res) => {
+  console.log("first step")
   const attendanceData = {
     user_id: mongoose.Types.ObjectId(req.params.user_id.trim()),
     lesson_id: mongoose.Types.ObjectId(req.params.lesson_id.trim())
   }
+  console.log(attendanceData)
   const newAttendance = new Attendance(attendanceData);
   newAttendance.save((err) => {
     if (err) {
