@@ -43,7 +43,7 @@ exports.getAttendance = (req,res) => {
 
 exports.checkAttendance = (req,res) => {
   console.log(req.query)
-  Attendance.findOne({ user_id: req.query.user_id })
+  Attendance.findOne({ user_id: req.query.user_id, class_id: req.query.class_id })
     .then(attendance => {
       res.json({
         attendance
