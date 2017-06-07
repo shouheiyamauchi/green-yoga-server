@@ -12,13 +12,10 @@ exports.getAttendances = (req,res) => {
 };
 
 exports.postAttendance = (req, res) => {
-  console.log("first step")
-  console.log(req.query)
   const attendanceData = {
     user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
     lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
   }
-  console.log(attendanceData)
   const newAttendance = new Attendance(attendanceData);
   newAttendance.save((err) => {
     if (err) {
@@ -45,7 +42,7 @@ exports.getAttendance = (req,res) => {
 };
 
 exports.checkAttendance = (req,res) => {
-  Attendance.findOne({ user_id: mongoose.Types.ObjectId(req.params.user_id), class_id: mongoose.Types.ObjectId(req.params.class_id) })
+  Attendance.findOne({ user_id: mongoose.Types.ObjectId(req.query.user_id), class_id: mongoose.Types.ObjectId(req.query.class_id) })
     .then(attendance => {
       res.json({
         attendance
