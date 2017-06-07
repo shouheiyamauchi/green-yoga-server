@@ -13,6 +13,9 @@ const teacherCheck = require('../../../middleware/teacher-check');
 // middleware to prevent access to receptionist area
 const receptionistCheck = require('../../../middleware/receptionist-check');
 
+// check an attendance exists
+router.get('/check', attendanceController.checkAttendance);
+
 // get full list of attendance
 router.get('/', attendanceController.getAttendances);
 
@@ -21,9 +24,6 @@ router.post('/', attendanceController.postAttendance);
 
 // get a attendance
 router.get('/:id', attendanceController.getAttendance);
-
-// check an attendance exists
-router.get('/verify', attendanceController.checkAttendance);
 
 // delete a attendance
 router.delete('/:id', attendanceController.deleteAttendance);
