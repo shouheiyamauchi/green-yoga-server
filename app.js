@@ -16,7 +16,7 @@ const index = require('./routes/index');
 
 // import API routes
 const indexapi = require('./routes/api/v1/index');
-const attendance = require('./routes/api/v1/attendance');
+const attendances = require('./routes/api/v1/attendances');
 const auth = require('./routes/api/v1/auth');
 const lessons = require('./routes/api/v1/lessons');
 const locations = require('./routes/api/v1/locations');
