@@ -15,12 +15,12 @@ function validateLessonForm(payload) {
       errors.date = 'Please provide a valid date.';
     }
 
-  if (!payload || typeof payload.startTime !== 'string' || payload.startTime.trim().length === 0) {
+  if (!payload || typeof payload.startTime !== 'string' || payload.startTime.trim().length === 1) {
       isFormValid = false;
       errors.startTime = 'Please provide a start time.';
     }
 
-  if (!payload || typeof payload.endTime !== 'string' || payload.endTime.trim().length === 0) {
+  if (!payload || typeof payload.endTime !== 'string' || payload.endTime.trim().length === 1) {
       isFormValid = false;
       errors.endTime = 'Please provide an end time.';
     }
