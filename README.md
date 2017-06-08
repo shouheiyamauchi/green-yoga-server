@@ -1,5 +1,3 @@
-This is the back-end server created for [www.greenyoga.com.au](https://www.greenyoga.com.au).
+This is the back-end server created for [www.greenyoga.com.au](https://www.greenyoga.com.au) using Express.js.
 
-It is created using Express.js.
-
-See the repository for the front-end application for more information: https://github.com/shouheiyamauchi/green-yoga-website
+See the GitHub repository for the front-end application for more information: https://github.com/shouheiyamauchi/green-yoga-website
