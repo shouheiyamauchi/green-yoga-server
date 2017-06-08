@@ -1,4 +1,4 @@
-const lessonController = require('../../../controllers/lessonController')
+const userController = require('../../../controllers/userController')
 const express = require('express');
 const router = new express.Router();
 
@@ -13,19 +13,16 @@ const teacherCheck = require('../../../middleware/teacher-check');
 // middleware to prevent access to receptionist area
 const receptionistCheck = require('../../../middleware/receptionist-check');
 
-// get full list of classes
-router.get('/', lessonController.getLessons);
+// get full list of users
+router.get('/', [authCheck, receptionistCheck], userController.getUsers);
 
-// create a new class
-router.post('/', [authCheck, teacherCheck], lessonController.postLesson);
+// get a user
+router.get('/:id', [authCheck, receptionistCheck], userController.getUser);
 
-// get a class
-router.get('/:id', [authCheck, administratorCheck], lessonController.getLesson);
+// edit a user
+router.post('/:id', [authCheck, receptionistCheck], userController.updateUser);
 
-// edit a class
-router.post('/:id', [authCheck, administratorCheck], lessonController.updateLesson);
-
-// delete a class
-router.delete('/:id', [authCheck, administratorCheck], lessonController.deleteLesson);
+// delete a user
+router.delete('/:id', [authCheck, administratorCheck], userController.deleteUser);
 
 module.exports = router;

@@ -20,7 +20,7 @@ const attendances = require('./routes/api/v1/attendances');
 const auth = require('./routes/api/v1/auth');
 const lessons = require('./routes/api/v1/lessons');
 const locations = require('./routes/api/v1/locations');
-const user = require('./routes/api/v1/user');
+const users = require('./routes/api/v1/users');
 const types = require('./routes/api/v1/types');
 
 const app = express();
@@ -57,7 +57,7 @@ app.use('/api/v1/attendances', attendances);
 app.use('/api/v1/auth', auth);
 app.use('/api/v1/lessons', lessons);
 app.use('/api/v1/locations', locations);
-app.use('/api/v1/user', user);
+app.use('/api/v1/users', users);
 app.use('/api/v1/types', types);
 
 // catch 404 and forward to error handler
