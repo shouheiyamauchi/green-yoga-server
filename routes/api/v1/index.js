@@ -2,6 +2,7 @@ const express = require('express');
 const aws = require('aws-sdk');
 const router = new express.Router();
 const User = require('mongoose').model('User');
+const contactController = require('../../../controllers/contactController')
 
 const app = express();
 
@@ -35,6 +36,9 @@ router.get('/sign-s3', authCheck, (req, res) => {
     res.end();
   });
 });
+
+// contact form
+router.post('/contact', contactController.postForm);
 
 // get full list of teachers
 router.get('/teachers', (req,res) => {
