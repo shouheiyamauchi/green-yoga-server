@@ -48,7 +48,7 @@ exports.postForm = (req, res) => {
       from: 'Green Yoga <postmaster@sandbox03af29fc683d4a939911ab65d122c07b.mailgun.org>',
       to: 'Green Park <greenpmk22@gmail.com>',
       subject: 'Green Yoga Contact Form',
-      text: 'Testing some Mailgun awesomness!'
+      text: `[${req.body.name.trim()}][${req.body.email.trim()}]${req.body.message.trim()}`
     };
     mailgun.messages().send(data, function (error, body) {
       console.log(body);
