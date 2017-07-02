@@ -12,24 +12,34 @@ exports.getAttendances = (req,res) => {
 };
 
 exports.postAttendance = (req, res) => {
-  const attendanceData = {
-    user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
-    lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
-  }
-  const newAttendance = new Attendance(attendanceData);
-  newAttendance.save((err) => {
-    if (err) {
-      return res.status(400).json({
-        success: false,
-        message: 'Error: Failed to process the form.'
-      });
-    }
+  Attendance.find({ user_id: mongoose.Types.ObjectId(req.query.user_id.trim())})
+    .then(attendance => {
+      if (attendance != null) {
+        return res.status(409).json({
+          success: false,
+          message: 'Error: An attendance with those details already exists.'
+        });
+      } else {
+        const attendanceData = {
+          user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
+          lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
+        }
+        const newAttendance = new Attendance(attendanceData);
+        newAttendance.save((err) => {
+          if (err) {
+            return res.status(400).json({
+              success: false,
+              message: 'Error: Failed to process the form.'
+            });
+          }
 
-    return res.status(200).json({
-      success: true,
-      message: 'You have successfully created a new attendance.'
+          return res.status(200).json({
+            success: true,
+            message: 'You have successfully created a new attendance.'
+          });
+        });
+      }
     });
-  });
 };
 
 exports.getAttendance = (req,res) => {
