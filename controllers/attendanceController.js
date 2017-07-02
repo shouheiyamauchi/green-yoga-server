@@ -16,7 +16,7 @@ exports.postAttendance = (req, res) => {
     user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
     lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
   }
-  Attendance.find({ user_id: req.query.user_id, lesson_id: req.query.lesson_id })
+  Attendance.find({ ...attendanceData })
     .then(attendance => {
       console.log(attendance)
       if (attendance.length > 0) {
