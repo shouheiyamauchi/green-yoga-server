@@ -14,6 +14,7 @@ exports.getAttendances = (req,res) => {
 exports.postAttendance = (req, res) => {
   Attendance.find({ user_id: mongoose.Types.ObjectId(req.query.user_id.trim())})
     .then(attendance => {
+      console.log(attendance)
       if (attendance != null) {
         return res.status(409).json({
           success: false,
