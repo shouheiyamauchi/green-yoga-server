@@ -25,7 +25,7 @@ function validateContactForm(payload) {
     }
 
   if (!isFormValid) {
-    message = 'Please check the form for errors:';
+    message = 'Please check the form for errors.';
   }
 
   return {

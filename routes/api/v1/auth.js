@@ -74,7 +74,7 @@ function validateSignupForm(payload, callback) {
     }
 
     if (!isFormValid) {
-      message = 'Please check the form for errors:';
+      message = 'Please check the form for errors.';
     }
 
     const validation = {
@@ -110,7 +110,7 @@ function validateLoginForm(payload) {
   }
 
   if (!isFormValid) {
-    message = 'Please check the form for errors:';
+    message = 'Please check the form for errors.';
   }
 
   return {

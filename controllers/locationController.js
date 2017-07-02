@@ -21,7 +21,7 @@ function validateLocationForm(payload) {
     }
 
   if (!isFormValid) {
-    message = 'Please check the form for errors:';
+    message = 'Please check the form for errors.';
   }
 
   return {
@@ -67,7 +67,7 @@ exports.postLocation = (req, res) => {
         // the 409 HTTP status code is for conflict error
         return res.status(409).json({
           success: false,
-          message: 'Please check the form for errors:',
+          message: 'Please check the form for errors.',
           errors: {
             name: 'A location with that name already exists.'
           }
