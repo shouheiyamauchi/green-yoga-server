@@ -15,7 +15,7 @@ exports.postAttendance = (req, res) => {
   Attendance.find({ user_id: mongoose.Types.ObjectId(req.query.user_id.trim())})
     .then(attendance => {
       console.log(attendance)
-      if (attendance != null) {
+      if (attendance != []) {
         return res.status(409).json({
           success: false,
           message: 'Error: An attendance with those details already exists.'
