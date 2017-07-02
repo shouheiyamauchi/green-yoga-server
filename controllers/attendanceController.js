@@ -70,6 +70,7 @@ exports.checkAttendance = (req,res) => {
 exports.checkDeleteAttendance = (req,res) => {
   Attendance.findOne({ user_id: req.query.user_id, lesson_id: req.query.lesson_id })
     .then(attendance => {
+      console.log("Attendance: ", attendance)
       Attendance.findByIdAndRemove({_id: attendance._id},
         function(err){
         	if(err) {
