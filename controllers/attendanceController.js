@@ -12,7 +12,11 @@ exports.getAttendances = (req,res) => {
 };
 
 exports.postAttendance = (req, res) => {
-  Attendance.find({ user_id: mongoose.Types.ObjectId(req.query.user_id.trim())})
+  const attendanceData = {
+    user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
+    lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
+  }
+  Attendance.find({ user_id: req.query.user_id, lesson_id: req.query.lesson_id })
     .then(attendance => {
       console.log(attendance)
       if (attendance.length > 0) {
@@ -21,10 +25,6 @@ exports.postAttendance = (req, res) => {
           message: 'Error: An attendance with those details already exists.'
         });
       } else {
-        const attendanceData = {
-          user_id: mongoose.Types.ObjectId(req.query.user_id.trim()),
-          lesson_id: mongoose.Types.ObjectId(req.query.lesson_id.trim())
-        }
         const newAttendance = new Attendance(attendanceData);
         newAttendance.save((err) => {
           if (err) {
@@ -70,7 +70,6 @@ exports.checkAttendance = (req,res) => {
 exports.checkDeleteAttendance = (req,res) => {
   Attendance.findOne({ user_id: req.query.user_id, lesson_id: req.query.lesson_id })
     .then(attendance => {
-      console.log("Attendance: ", attendance)
       Attendance.findByIdAndRemove({_id: attendance._id},
         function(err){
         	if(err) {
