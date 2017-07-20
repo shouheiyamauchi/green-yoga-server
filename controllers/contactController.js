@@ -47,7 +47,7 @@ exports.postForm = (req, res) => {
     const data = {
       from: 'Green Yoga <postmaster@mg.greenyoga.com.au>',
       to: 'Green Park <namaste@greenyoga.com.au>',
-      subject: 'Green Yoga Contact Form',
+      subject: 'Contact Form',
       text: `[Name: ${req.body.name.trim()}] [Email: ${req.body.email.trim()}] [Message: ${req.body.message.trim()}]`
     };
     mailgun.messages().send(data, function (error, body) {
