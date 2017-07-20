@@ -45,7 +45,7 @@ exports.postForm = (req, res) => {
     });
   } else {
     const data = {
-      from: 'Green Yoga <postmaster@sandbox03af29fc683d4a939911ab65d122c07b.mailgun.org>',
+      from: 'Green Yoga <postmaster@mg.greenyoga.com.au>',
       to: 'Green Park <namaste@greenyoga.com.au>',
       subject: 'Green Yoga Contact Form',
       text: `[Name: ${req.body.name.trim()}] [Email: ${req.body.email.trim()}] [Message: ${req.body.message.trim()}]`
